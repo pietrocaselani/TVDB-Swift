@@ -7,20 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		64B802151FA79C58004A6EEE /* TVDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B802101FA79C57004A6EEE /* TVDBTests.swift */; };
+		64B802161FA79C58004A6EEE /* TVDBTestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B802111FA79C58004A6EEE /* TVDBTestable.swift */; };
+		64B802271FA7A745004A6EEE /* tvdb_login.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B802141FA79C58004A6EEE /* tvdb_login.json */; };
+		64B802281FA7A749004A6EEE /* tvdb_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B802131FA79C58004A6EEE /* tvdb_episodes.json */; };
 		B3AF4D107AAF32A6B6642534 /* Pods_TVDB_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177804E6042D0437393AE55B /* Pods_TVDB_Tests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		64B802251FA7A413004A6EEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64B8021C1FA7A3EB004A6EEE;
+			remoteInfo = TVDBTestsResources;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0A57E7AAAD9EFD6E2B9AC00A /* Pods-TVDB_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDB_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVDB_Tests/Pods-TVDB_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		177804E6042D0437393AE55B /* Pods_TVDB_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVDB_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4865F28167497C17DCA2BC77 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		4ECE0E25799E00F83DD954B2 /* TVDB.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TVDB.podspec; path = ../TVDB.podspec; sourceTree = "<group>"; };
+		4ECE0E25799E00F83DD954B2 /* TVDB.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TVDB.podspec; path = ../TVDB.podspec; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TVDB_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVDB_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		62478B4844A9A4ECF6FD8DA0 /* Pods-TVDB_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDB_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVDB_Tests/Pods-TVDB_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		65D488B242569244417692DF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		64B801F91FA79B84004A6EEE /* UNLICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = UNLICENSE; path = ../UNLICENSE; sourceTree = "<group>"; };
+		64B802101FA79C57004A6EEE /* TVDBTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVDBTests.swift; sourceTree = "<group>"; };
+		64B802111FA79C58004A6EEE /* TVDBTestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVDBTestable.swift; sourceTree = "<group>"; };
+		64B802131FA79C58004A6EEE /* tvdb_episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tvdb_episodes.json; sourceTree = "<group>"; };
+		64B802141FA79C58004A6EEE /* tvdb_login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tvdb_login.json; sourceTree = "<group>"; };
+		64B8021D1FA7A3EB004A6EEE /* TVDBTestsResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVDBTestsResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B8021F1FA7A3EB004A6EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65D488B242569244417692DF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +47,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3AF4D107AAF32A6B6642534 /* Pods_TVDB_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B8021A1FA7A3EB004A6EEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +73,7 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
+				64B8021E1FA7A3EB004A6EEE /* TVDBTestsResources */,
 				607FACD11AFB9204008FA782 /* Products */,
 				A2752420BE25E8E085AFB3F0 /* Pods */,
 				245CC4AF41722E8C1B4ED190 /* Frameworks */,
@@ -58,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACE51AFB9204008FA782 /* TVDB_Tests.xctest */,
+				64B8021D1FA7A3EB004A6EEE /* TVDBTestsResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,7 +92,9 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				64B802121FA79C58004A6EEE /* JSONs */,
+				64B802111FA79C58004A6EEE /* TVDBTestable.swift */,
+				64B802101FA79C57004A6EEE /* TVDBTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -82,11 +111,28 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				64B801F91FA79B84004A6EEE /* UNLICENSE */,
 				4ECE0E25799E00F83DD954B2 /* TVDB.podspec */,
 				65D488B242569244417692DF /* README.md */,
-				4865F28167497C17DCA2BC77 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		64B802121FA79C58004A6EEE /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				64B802131FA79C58004A6EEE /* tvdb_episodes.json */,
+				64B802141FA79C58004A6EEE /* tvdb_login.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
+		64B8021E1FA7A3EB004A6EEE /* TVDBTestsResources */ = {
+			isa = PBXGroup;
+			children = (
+				64B8021F1FA7A3EB004A6EEE /* Info.plist */,
+			);
+			path = TVDBTestsResources;
 			sourceTree = "<group>";
 		};
 		A2752420BE25E8E085AFB3F0 /* Pods */ = {
@@ -115,11 +161,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				64B802261FA7A413004A6EEE /* PBXTargetDependency */,
 			);
 			name = TVDB_Tests;
 			productName = Tests;
 			productReference = 607FACE51AFB9204008FA782 /* TVDB_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		64B8021C1FA7A3EB004A6EEE /* TVDBTestsResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64B802201FA7A3EB004A6EEE /* Build configuration list for PBXNativeTarget "TVDBTestsResources" */;
+			buildPhases = (
+				64B802191FA7A3EB004A6EEE /* Sources */,
+				64B8021A1FA7A3EB004A6EEE /* Frameworks */,
+				64B8021B1FA7A3EB004A6EEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVDBTestsResources;
+			productName = TVDBTestsResources;
+			productReference = 64B8021D1FA7A3EB004A6EEE /* TVDBTestsResources.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -131,14 +195,16 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
-					607FACCF1AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
-					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = B5RPM7SE3L;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					64B8021C1FA7A3EB004A6EEE = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = B5RPM7SE3L;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -156,6 +222,7 @@
 			projectRoot = "";
 			targets = (
 				607FACE41AFB9204008FA782 /* TVDB_Tests */,
+				64B8021C1FA7A3EB004A6EEE /* TVDBTestsResources */,
 			);
 		};
 /* End PBXProject section */
@@ -165,6 +232,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B8021B1FA7A3EB004A6EEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64B802271FA7A745004A6EEE /* tvdb_login.json in Resources */,
+				64B802281FA7A749004A6EEE /* tvdb_episodes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +254,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TVDB_Tests/Pods-TVDB_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/TVDB/TVDB.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/TVDB/TVDBSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVDBSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -229,11 +317,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				64B802151FA79C58004A6EEE /* TVDBTests.swift in Sources */,
+				64B802161FA79C58004A6EEE /* TVDBTestable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B802191FA7A3EB004A6EEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		64B802261FA7A413004A6EEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64B8021C1FA7A3EB004A6EEE /* TVDBTestsResources */;
+			targetProxy = 64B802251FA7A413004A6EEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		607FACED1AFB9204008FA782 /* Debug */ = {
@@ -339,6 +443,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A57E7AAAD9EFD6E2B9AC00A /* Pods-TVDB_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -351,8 +457,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.13;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -360,6 +468,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62478B4844A9A4ECF6FD8DA0 /* Pods-TVDB_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -368,8 +478,58 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.13;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		64B802211FA7A3EB004A6EEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TVDBTestsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.TVDBTestsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		64B802221FA7A3EB004A6EEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TVDBTestsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.TVDBTestsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -390,6 +550,15 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64B802201FA7A3EB004A6EEE /* Build configuration list for PBXNativeTarget "TVDBTestsResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64B802211FA7A3EB004A6EEE /* Debug */,
+				64B802221FA7A3EB004A6EEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

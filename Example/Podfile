@@ -1,0 +1,6 @@
+use_frameworks!
+target 'TVDB_Tests' do
+  pod 'TVDB', :path => '../'
+  
+  
+end

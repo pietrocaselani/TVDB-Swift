@@ -1,0 +1,5 @@
+included:
+  - TVDB
+  - Example/Tests
+excluded:
+  - Example/Pods

@@ -3,7 +3,8 @@ import Moya
 public protocol TVDBType: TargetType, AccessTokenAuthorizable {}
 
 public extension TVDBType {
-	public var baseURL: URL  { return TVDB.baseURL }
+
+	public var baseURL: URL { return TVDB.baseURL }
 
 	public var headers: [String : String]? { return nil }
 

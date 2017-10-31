@@ -52,5 +52,5 @@ final class AuthenticationPlugin: PluginType {
     guard let token = json?["token"] as? String else { return }
 
     tvdb.token = token
-  }  
+  }
 }

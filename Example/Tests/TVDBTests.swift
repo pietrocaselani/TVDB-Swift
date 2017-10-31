@@ -31,7 +31,10 @@ final class TVDBTests: XCTestCase {
         let requestToken = response.request?.allHTTPHeaderFields!["Authorization"]
         XCTAssertNotNil(requestToken)
 
-				let episode = try! response.map(EpisodeResponse.self).episode
+				guard let episode = try? response.map(EpisodeResponse.self).episode else {
+					XCTFail()
+					return
+				}
 
         XCTAssertEqual(episode.filename, "episodes/276564/5634087.jpg")
       default:

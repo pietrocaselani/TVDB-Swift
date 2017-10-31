@@ -1,17 +1,17 @@
 import Moya
 
-public protocol TVDBType: TargetType {}
+public protocol TVDBType: TargetType, AccessTokenAuthorizable {}
 
 public extension TVDBType {
-  public var baseURL: URL { return TVDB.baseURL }
+	public var baseURL: URL  { return TVDB.baseURL }
 
-  public var method: Moya.Method { return .get }
+	public var headers: [String : String]? { return nil }
 
-  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
+	public var method: Moya.Method { return .get }
 
-  public var task: Task { return .request }
+	public var authorizationType: AuthorizationType { return .bearer }
 
-  public var sampleData: Data { return Data() }
+	public var sampleData: Data { return Data() }
 }
 
 func stubbedResponse(_ filename: String) -> Data {

@@ -1,12 +1,11 @@
 import Moya
-import RxSwift
 
 extension TVDB {
-  public var authentication: RxMoyaProvider<Authentication> {
+  public var authentication: MoyaProvider<Authentication> {
     return createProvider(forTarget: Authentication.self)
   }
 
-  public var episodes: RxMoyaProvider<Episodes> {
+  public var episodes: MoyaProvider<Episodes> {
     return createProvider(forTarget: Episodes.self)
   }
 }

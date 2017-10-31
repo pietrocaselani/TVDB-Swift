@@ -11,7 +11,9 @@ extension Episodes: TVDBType {
     }
   }
 
-  public var parameters: [String : Any]? { return nil }
+	public var task: Task {
+		return .requestPlain
+	}
 
   public var sampleData: Data {
     return stubbedResponse("tvdb_episodes")

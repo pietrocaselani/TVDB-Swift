@@ -1,9 +1,7 @@
-import ObjectMapper
-
-public final class EpisodeResponse: ImmutableMappable {
+public final class EpisodeResponse: Codable {
   public let episode: FullEpisode
 
-  public init(map: Map) throws {
-    self.episode = try map.value("data")
-  }
+	enum CodingKeys: String, CodingKey {
+		case episode = "data"
+	}
 }

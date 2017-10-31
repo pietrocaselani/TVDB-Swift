@@ -1,5 +1,4 @@
 import XCTest
-import Moya_ObjectMapper
 @testable import TVDBSwift
 
 final class TVDBTests: XCTestCase {
@@ -32,7 +31,7 @@ final class TVDBTests: XCTestCase {
         let requestToken = response.request?.allHTTPHeaderFields!["Authorization"]
         XCTAssertNotNil(requestToken)
 
-        let episode = try! response.mapObject(EpisodeResponse.self).episode
+				let episode = try! response.map(EpisodeResponse.self).episode
 
         XCTAssertEqual(episode.filename, "episodes/276564/5634087.jpg")
       default:
@@ -40,7 +39,7 @@ final class TVDBTests: XCTestCase {
       }
     }
 
-    wait(for: [responseExpectation], timeout: 33)
+    wait(for: [responseExpectation], timeout: 2)
   }
 
   func testTVDB_requiredHeaders() {

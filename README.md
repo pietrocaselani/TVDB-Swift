@@ -22,7 +22,7 @@ pod 'TVDB'
 
 ## Author
 
-Pietro Caselani, pietro.caselani@arctouch.com
+Pietro Caselani, pc1992@gmail.com
 
 ## License
 

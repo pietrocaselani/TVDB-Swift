@@ -6,7 +6,7 @@ public extension TVDBType {
 
 	public var baseURL: URL { return TVDB.baseURL }
 
-	public var headers: [String : String]? { return nil }
+	public var headers: [String: String]? { return nil }
 
 	public var method: Moya.Method { return .get }
 

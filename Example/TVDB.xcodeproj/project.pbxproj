@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		643D90641FB9F4F6005E2ECE /* TVDBTokenRequestInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D90631FB9F4F6005E2ECE /* TVDBTokenRequestInterceptorTests.swift */; };
+		643D90681FBA0D7A005E2ECE /* FatalErrorExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D90671FBA0D7A005E2ECE /* FatalErrorExpectation.swift */; };
+		643D906A1FBA0EA5005E2ECE /* TestableDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D90691FBA0EA5005E2ECE /* TestableDateProvider.swift */; };
+		643D906C1FBA0FE3005E2ECE /* tvdb_refreshtoken.json in Resources */ = {isa = PBXBuildFile; fileRef = 643D906B1FBA0FE3005E2ECE /* tvdb_refreshtoken.json */; };
 		64B802151FA79C58004A6EEE /* TVDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B802101FA79C57004A6EEE /* TVDBTests.swift */; };
 		64B802161FA79C58004A6EEE /* TVDBTestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B802111FA79C58004A6EEE /* TVDBTestable.swift */; };
 		64B802271FA7A745004A6EEE /* tvdb_login.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B802141FA79C58004A6EEE /* tvdb_login.json */; };
@@ -31,6 +35,10 @@
 		607FACE51AFB9204008FA782 /* TVDB_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVDB_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62478B4844A9A4ECF6FD8DA0 /* Pods-TVDB_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDB_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVDB_Tests/Pods-TVDB_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		643D90631FB9F4F6005E2ECE /* TVDBTokenRequestInterceptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBTokenRequestInterceptorTests.swift; sourceTree = "<group>"; };
+		643D90671FBA0D7A005E2ECE /* FatalErrorExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorExpectation.swift; sourceTree = "<group>"; };
+		643D90691FBA0EA5005E2ECE /* TestableDateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableDateProvider.swift; sourceTree = "<group>"; };
+		643D906B1FBA0FE3005E2ECE /* tvdb_refreshtoken.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tvdb_refreshtoken.json; sourceTree = "<group>"; };
 		64B801F91FA79B84004A6EEE /* UNLICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = UNLICENSE; path = ../UNLICENSE; sourceTree = "<group>"; };
 		64B802101FA79C57004A6EEE /* TVDBTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVDBTests.swift; sourceTree = "<group>"; };
 		64B802111FA79C58004A6EEE /* TVDBTestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVDBTestable.swift; sourceTree = "<group>"; };
@@ -92,10 +100,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				643D90671FBA0D7A005E2ECE /* FatalErrorExpectation.swift */,
 				64B802121FA79C58004A6EEE /* JSONs */,
+				607FACE91AFB9204008FA782 /* Supporting Files */,
+				643D90691FBA0EA5005E2ECE /* TestableDateProvider.swift */,
 				64B802111FA79C58004A6EEE /* TVDBTestable.swift */,
 				64B802101FA79C57004A6EEE /* TVDBTests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
+				643D90631FB9F4F6005E2ECE /* TVDBTokenRequestInterceptorTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -123,6 +134,7 @@
 			children = (
 				64B802131FA79C58004A6EEE /* tvdb_episodes.json */,
 				64B802141FA79C58004A6EEE /* tvdb_login.json */,
+				643D906B1FBA0FE3005E2ECE /* tvdb_refreshtoken.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -240,6 +252,7 @@
 			files = (
 				64B802271FA7A745004A6EEE /* tvdb_login.json in Resources */,
 				64B802281FA7A749004A6EEE /* tvdb_episodes.json in Resources */,
+				643D906C1FBA0FE3005E2ECE /* tvdb_refreshtoken.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +325,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643D90681FBA0D7A005E2ECE /* FatalErrorExpectation.swift in Sources */,
+				643D906A1FBA0EA5005E2ECE /* TestableDateProvider.swift in Sources */,
 				64B802151FA79C58004A6EEE /* TVDBTests.swift in Sources */,
 				64B802161FA79C58004A6EEE /* TVDBTestable.swift in Sources */,
+				643D90641FB9F4F6005E2ECE /* TVDBTokenRequestInterceptorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

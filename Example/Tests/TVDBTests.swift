@@ -7,7 +7,13 @@ final class TVDBTests: XCTestCase {
 
 	override func setUp() {
 		clearUserDefaults(userDefaultsMock)
-		tvdb = TVDBTestable(apiKey: "my_apikey", userDefaults: userDefaultsMock)
+
+		let builder = TVDBBuilder {
+			$0.apiKey = "my_apikey"
+			$0.userDefaults = userDefaultsMock
+		}
+
+		tvdb = TVDBTestable(builder: builder)
 		super.setUp()
 	}
 
@@ -17,8 +23,30 @@ final class TVDBTests: XCTestCase {
 		}
 	}
 
+	func testTVDB_cantCreateWithoutAPIKey() {
+		let builder = TVDBBuilder {
+			$0.apiKey = nil
+		}
+
+		expectFatalError(expectedMessage: "TVDB needs an apiKey") {
+			_ = TVDB(builder: builder)
+		}
+	}
+
+	func testTVDB_cantCreateWithoutUserDefaults() {
+		let builder = TVDBBuilder {
+			$0.apiKey = "my_apikey"
+			$0.userDefaults = nil
+		}
+
+		expectFatalError(expectedMessage: "TVDB needs an userDefaults") {
+			_ = TVDB(builder: builder)
+		}
+	}
+
 	func testTVDB_handlesLogin() {
 		//Given TVDB client without token
+		clearUserDefaults(userDefaultsMock)
 
 		//When
 		let responseExpectation = expectation(description: "Expect episodes response")
@@ -66,9 +94,32 @@ final class TVDBTests: XCTestCase {
 		tvdb.token = "cool_token"
 
 		//When
-		let client = TVDB(apiKey: "apiKey", userDefaults: userDefaultsMock)
+		let builder = TVDBBuilder {
+			$0.apiKey = "my_apikey"
+			$0.userDefaults = userDefaultsMock
+		}
+
+		let client = TVDBTestable(builder: builder)
 
 		//Then
 		XCTAssertEqual(client.token, "cool_token")
+	}
+
+	func testTVDB_updateToken_setsLastTokenDate() {
+		//Given
+		let beginOfTime = Date(timeIntervalSince1970: 0)
+		let builder = TVDBBuilder {
+			$0.apiKey = "my_apikey"
+			$0.userDefaults = userDefaultsMock
+			$0.dateProvider = TestableDateProvider(now: beginOfTime)
+		}
+		let tvdb = TVDB(builder: builder)
+
+		//When
+		tvdb.token = "testing_token"
+
+		//Then
+		XCTAssertNotNil(tvdb.lastTokenDate)
+		XCTAssertEqual(tvdb.lastTokenDate, beginOfTime)
 	}
 }

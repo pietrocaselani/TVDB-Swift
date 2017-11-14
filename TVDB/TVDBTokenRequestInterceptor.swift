@@ -24,14 +24,11 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
 		if currentToken == nil {
 			doLogin(tvdb, request, endpoint, done)
 		} else {
-			let now = tvdb.dateProvider.now.timeIntervalSince1970
-			let lastTokenTimeInterval = tvdb.lastTokenDate?.timeIntervalSince1970 ?? now
-			let diff = now - lastTokenTimeInterval
 
-			if diff >= 86400 {
-				refreshToken(tvdb, request, endpoint, done)
-			} else {
+			if tvdb.hasValidToken {
 				done(.success(request))
+			} else {
+				refreshToken(tvdb, request, endpoint, done)
 			}
 		}
 	}

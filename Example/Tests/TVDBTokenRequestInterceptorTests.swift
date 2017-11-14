@@ -49,12 +49,19 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
 		let builder = TVDBBuilder {
 			$0.apiKey = "my_apikey"
 			$0.userDefaults = userDefaultsMock
-			$0.dateProvider = TestableDateProvider(now: beginOfTime.addingTimeInterval(60 * 60 * 24))
+			$0.dateProvider = TestableDateProvider(now: beginOfTime)
 		}
 
 		self.tvdb = TVDBTestable(builder: builder)
 		tvdb.token = "my_token"
-		tvdb.lastTokenDate = beginOfTime
+
+		let newBuilder = TVDBBuilder {
+			$0.apiKey = "my_apikey"
+			$0.userDefaults = userDefaultsMock
+			$0.dateProvider = TestableDateProvider(now: beginOfTime.addingTimeInterval(60 * 60 * 24))
+		}
+
+		self.tvdb = TVDBTestable(builder: newBuilder)
 
 		self.interceptor = TVDBTokenRequestInterceptor(tvdb: tvdb)
 

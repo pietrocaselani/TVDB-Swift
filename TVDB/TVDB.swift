@@ -5,7 +5,7 @@ import Result
 public class TVDB {
 	let apiKey: String
 	let dateProvider: DateProvider
-	var lastTokenDate: Date?
+	internal private(set) var lastTokenDate: Date?
 	private let userDefaults: UserDefaults
 	private let callbackQueue: DispatchQueue?
 	private var interceptors: [RequestInterceptor]
@@ -16,6 +16,16 @@ public class TVDB {
 			guard let validToken = token else { return }
 			saveToken(validToken)
 		}
+	}
+
+	public var hasValidToken: Bool {
+		guard let tokenDate = lastTokenDate else { return false }
+
+		let now = dateProvider.now.timeIntervalSince1970
+		let lastTokenTimeInterval = tokenDate.timeIntervalSince1970
+		let diff = now - lastTokenTimeInterval
+
+		return diff < 86400
 	}
 
 	public lazy var authentication: MoyaProvider<Authentication> = createProvider(forTarget: Authentication.self)
@@ -77,14 +87,14 @@ public class TVDB {
 	}
 
 	private func loadToken() {
-		let tokenData = userDefaults.object(forKey: TVDB.accessTokenKey) as? Data
-		if let tokenData = tokenData, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? String {
-			self.token = token
+		guard let tokenData = userDefaults.object(forKey: TVDB.accessTokenKey) as? Data else { return }
 
-			if let date = userDefaults.object(forKey: TVDB.accessTokenDateKey) as? Date {
-				self.lastTokenDate = date
-			}
-		}
+		guard let tokenDate = userDefaults.object(forKey: TVDB.accessTokenDateKey) as? Date else { return }
+
+		guard let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? String else { return }
+
+		self.token = token
+		self.lastTokenDate = tokenDate
 	}
 
 	private func saveToken(_ token: String) {

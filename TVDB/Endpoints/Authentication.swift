@@ -1,26 +1,46 @@
 import Moya
 
 public enum Authentication {
-  case login
+	case login(apiKey: String)
+	case refreshToken
 }
 
 extension Authentication: TVDBType {
 
   public var path: String {
-    return "login"
+		switch self {
+		case .login: return "login"
+		case .refreshToken: return "refresh_token"
+		}
   }
 
 	public var authorizationType: AuthorizationType {
-		return .none
+		switch self {
+		case .login: return .none
+		case .refreshToken: return .bearer
+		}
 	}
 
-  public var method: Moya.Method { return .post }
+  public var method: Moya.Method {
+		switch self {
+		case .login: return .post
+		case .refreshToken: return .get
+		}
+	}
 
 	public var task: Task {
-		return .requestPlain
+		switch self {
+		case .login(let apiKey):
+			return .requestParameters(parameters: ["apikey": apiKey], encoding: JSONEncoding.default)
+		case .refreshToken:
+			return .requestPlain
+		}
 	}
 
   public var sampleData: Data {
-    return stubbedResponse("tvdb_login")
+		switch self {
+		case .login: return stubbedResponse("tvdb_login")
+		case .refreshToken: return stubbedResponse("tvdb_refreshtoken")
+		}
   }
 }

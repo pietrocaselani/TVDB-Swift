@@ -1,76 +1,76 @@
 import Moya
 import RxSwift
+import Result
 
 public class TVDB {
 	let apiKey: String
-	let userDefaults: UserDefaults
-	var plugins = [PluginType]()
+	let dateProvider: DateProvider
+	internal private(set) var lastTokenDate: Date?
+	private let userDefaults: UserDefaults
+	private let callbackQueue: DispatchQueue?
+	private var interceptors: [RequestInterceptor]
+	private var plugins: [PluginType]
 
-	var token: String? {
+	public internal(set) var token: String? {
 		didSet {
-			updateAccessTokenPlugin(token)
+			guard let validToken = token else { return }
+			saveToken(validToken)
 		}
 	}
 
-	public init(apiKey: String, userDefaults: UserDefaults = UserDefaults.standard) {
+	public var hasValidToken: Bool {
+		guard let tokenDate = lastTokenDate else { return false }
+
+		let now = dateProvider.now.timeIntervalSince1970
+		let lastTokenTimeInterval = tokenDate.timeIntervalSince1970
+		let diff = now - lastTokenTimeInterval
+
+		return diff < 86400
+	}
+
+	public lazy var authentication: MoyaProvider<Authentication> = createProvider(forTarget: Authentication.self)
+	public lazy var episodes: MoyaProvider<Episodes> = createProvider(forTarget: Episodes.self)
+
+	public init(builder: TVDBBuilder) {
+		guard let apiKey = builder.apiKey else {
+			fatalError("TVDB needs an apiKey")
+		}
+
+		guard let userDefaults = builder.userDefaults else {
+			fatalError("TVDB needs an userDefaults")
+		}
+
 		self.apiKey = apiKey
 		self.userDefaults = userDefaults
-
-		plugins.append(AuthenticationPlugin(tvdb: self))
+		self.callbackQueue = builder.callbackQueue
+		self.plugins = builder.plugins ?? [PluginType]()
+		self.dateProvider = builder.dateProvider
+		self.interceptors = builder.interceptors
 
 		loadToken()
+
+		interceptors.append(TVDBTokenRequestInterceptor(tvdb: self))
+
+		plugins.append(AccessTokenPlugin(tokenClosure: self.token ?? ""))
 	}
 
 	func createProvider<T: TVDBType>(forTarget target: T.Type) -> MoyaProvider<T> {
 		let endpointClosure = createEndpointClosure(for: target)
 		let requestClosure = createRequestClosure(for: target)
 
-		return MoyaProvider<T>(endpointClosure: endpointClosure, requestClosure: requestClosure, plugins: self.plugins)
+		return MoyaProvider<T>(endpointClosure: endpointClosure,
+		                       requestClosure: requestClosure,
+		                       callbackQueue: callbackQueue,
+		                       plugins: self.plugins)
 	}
 
 	private func createRequestClosure<T: TVDBType>(for target: T.Type) -> MoyaProvider<T>.RequestClosure {
 		if target is Authentication.Type { return MoyaProvider.defaultRequestMapping }
 
 		let requestClosure = { [unowned self] (endpoint: Endpoint<T>, done: @escaping MoyaProvider.RequestResultClosure) in
-			guard let request = try? endpoint.urlRequest() else {
-				done(.failure(MoyaError.requestMapping(endpoint.url)))
-				return
+			self.interceptors.forEach {
+				$0.intercept(endpoint: endpoint, done: done)
 			}
-
-			if self.token != nil {
-				done(.success(request))
-				return
-			}
-
-			self.authentication.request(.login, completion: { result in
-				switch result {
-				case .success(let response):
-					do {
-						let json = try response.filterSuccessfulStatusAndRedirectCodes().mapJSON()
-
-						guard let jsonObject = json as? [String: Any] else {
-							done(.failure(MoyaError.requestMapping(endpoint.url)))
-							return
-						}
-
-						guard let token = jsonObject["token"] as? String else {
-							done(.failure(MoyaError.requestMapping(endpoint.url)))
-							return
-						}
-
-						self.token = token
-
-						var newRequest = request
-						newRequest.addValue(token, forHTTPHeaderField: "Authorization")
-
-						done(.success(newRequest))
-					} catch {
-						done(.failure(MoyaError.underlying(error, response)))
-					}
-				case .failure(let error):
-					done(.failure(error))
-				}
-			})
 		}
 
 		return requestClosure
@@ -78,39 +78,29 @@ public class TVDB {
 
 	private func createEndpointClosure<T: TVDBType>(for target: T.Type) -> MoyaProvider<T>.EndpointClosure {
 		let endpointClosure = { (target: T) -> Endpoint<T> in
-			var endpoint = MoyaProvider.defaultEndpointMapping(for: target)
+			let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
 			let headers = [TVDB.headerContentType: TVDB.contentTypeJSON, TVDB.headerAccept: TVDB.acceptValue]
-			endpoint = endpoint.adding(newHTTPHeaderFields: headers)
-			return endpoint
+			return endpoint.adding(newHTTPHeaderFields: headers)
 		}
 
 		return endpointClosure
 	}
 
 	private func loadToken() {
-		let tokenData = userDefaults.object(forKey: TVDB.accessTokenKey) as? Data
-		if let tokenData = tokenData, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? String {
-			self.token = token
-		}
+		guard let tokenData = userDefaults.object(forKey: TVDB.accessTokenKey) as? Data else { return }
+
+		guard let tokenDate = userDefaults.object(forKey: TVDB.accessTokenDateKey) as? Date else { return }
+
+		guard let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? String else { return }
+
+		self.token = token
+		self.lastTokenDate = tokenDate
 	}
 
 	private func saveToken(_ token: String) {
 		let tokenData = NSKeyedArchiver.archivedData(withRootObject: token)
+		lastTokenDate = dateProvider.now
 		userDefaults.set(tokenData, forKey: TVDB.accessTokenKey)
-	}
-
-	private func updateAccessTokenPlugin(_ token: String?) {
-		if let index = self.plugins.index(where: { $0 is AccessTokenPlugin }) {
-			plugins.remove(at: index)
-		}
-
-		if let token = token {
-				let plugin = AccessTokenPlugin(tokenClosure: { () -> String in
-				return token
-			}())
-
-			plugins.append(plugin)
-			saveToken(token)
-		}
+		userDefaults.set(lastTokenDate, forKey: TVDB.accessTokenDateKey)
 	}
 }

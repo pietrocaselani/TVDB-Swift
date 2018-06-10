@@ -168,7 +168,6 @@
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				05AE55A07FBEDCB11CC30E4A /* [CP] Embed Pods Frameworks */,
-				5C34875FEE23565E59DF2C15 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,21 +282,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TVDB_Tests/Pods-TVDB_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C34875FEE23565E59DF2C15 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TVDB_Tests/Pods-TVDB_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		690A5E34144D5CD08D4E8106 /* [CP] Check Pods Manifest.lock */ = {

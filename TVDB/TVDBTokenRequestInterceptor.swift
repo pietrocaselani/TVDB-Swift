@@ -8,7 +8,7 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
 		self.tvdb = tvdb
 	}
 
-	func intercept<T>(endpoint: Endpoint<T>, done: @escaping MoyaProvider<T>.RequestResultClosure) where T: TVDBType {
+	func intercept<T>(target: T.Type, endpoint: Endpoint, done: @escaping MoyaProvider<T>.RequestResultClosure) where T: TVDBType {
 		guard let tvdb = self.tvdb else {
 			done(.failure(MoyaError.requestMapping(endpoint.url)))
 			return
@@ -22,29 +22,31 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
 		let currentToken = tvdb.token
 
 		if currentToken == nil {
-			doLogin(tvdb, request, endpoint, done)
+			doLogin(target, tvdb, request, endpoint, done)
 		} else {
 
 			if tvdb.hasValidToken {
 				done(.success(request))
 			} else {
-				refreshToken(tvdb, request, endpoint, done)
+				refreshToken(target, tvdb, request, endpoint, done)
 			}
 		}
 	}
 
-	private func refreshToken<T: TVDBType>(_ tvdb: TVDB,
+	private func refreshToken<T: TVDBType>(_ target: T.Type,
+										   _ tvdb: TVDB,
 	                                       _ request: URLRequest,
-	                                       _ endpoint: Endpoint<T>,
+	                                       _ endpoint: Endpoint,
 	                                       _ done: @escaping MoyaProvider<T>.RequestResultClosure) {
-		requestToken(tvdb, Authentication.refreshToken, request, Authentication.self, done)
+		requestToken(tvdb, Authentication.refreshToken, request, target, done)
 	}
 
-	private func doLogin<T: TVDBType>(_ tvdb: TVDB,
+	private func doLogin<T: TVDBType>(_ target: T.Type,
+									  _ tvdb: TVDB,
 	                                  _ request: URLRequest,
-	                                  _ endpoint: Endpoint<T>,
+	                                  _ endpoint: Endpoint,
 	                                  _ done: @escaping MoyaProvider<T>.RequestResultClosure) {
-		requestToken(tvdb, Authentication.login(apiKey: tvdb.apiKey), request, Authentication.self, done)
+		requestToken(tvdb, Authentication.login(apiKey: tvdb.apiKey), request, target, done)
 	}
 
 	private func requestToken<T: TVDBType>(_ tvdb: TVDB,

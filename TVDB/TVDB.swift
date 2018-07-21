@@ -65,11 +65,11 @@ public class TVDB {
 	}
 
 	private func createRequestClosure<T: TVDBType>(for target: T.Type) -> MoyaProvider<T>.RequestClosure {
-		if target is Authentication.Type { return MoyaProvider.defaultRequestMapping }
+		if target is Authentication.Type { return MoyaProvider<T>.defaultRequestMapping }
 
-		let requestClosure = { [unowned self] (endpoint: Endpoint<T>, done: @escaping MoyaProvider.RequestResultClosure) in
+		let requestClosure = { [unowned self] (endpoint: Endpoint, done: @escaping MoyaProvider.RequestResultClosure) in
 			self.interceptors.forEach {
-				$0.intercept(endpoint: endpoint, done: done)
+				$0.intercept(target: target, endpoint: endpoint, done: done)
 			}
 		}
 
@@ -77,7 +77,7 @@ public class TVDB {
 	}
 
 	private func createEndpointClosure<T: TVDBType>(for target: T.Type) -> MoyaProvider<T>.EndpointClosure {
-		let endpointClosure = { (target: T) -> Endpoint<T> in
+		let endpointClosure = { (target: T) -> Endpoint in
 			let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
 			let headers = [TVDB.headerContentType: TVDB.contentTypeJSON, TVDB.headerAccept: TVDB.acceptValue]
 			return endpoint.adding(newHTTPHeaderFields: headers)

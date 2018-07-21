@@ -32,7 +32,7 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
 		let resultExpectation = expectation(description: "expect to have a token on tvdb")
 
 		//When
-		interceptor.intercept(endpoint: endpoint) { _ in
+		interceptor.intercept(target: Episodes.self, endpoint: endpoint) { _ in
 			//Then
 			resultExpectation.fulfill()
 			XCTAssertNotNil(self.tvdb.token)
@@ -69,7 +69,7 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
 		let resultExpectation = expectation(description: "expect to have a token on tvdb")
 
 		//When
-		interceptor.intercept(endpoint: endpoint) { _ in
+		interceptor.intercept(target: Episodes.self, endpoint: endpoint) { _ in
 			//Then
 			resultExpectation.fulfill()
 			XCTAssertNotNil(self.tvdb.token)
@@ -98,7 +98,7 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
 		let resultExpectation = expectation(description: "expect to have a token on tvdb")
 
 		//When
-		interceptor.intercept(endpoint: endpoint) { _ in
+		interceptor.intercept(target: Episodes.self, endpoint: endpoint) { _ in
 			//Then
 			resultExpectation.fulfill()
 			XCTAssertNotNil(self.tvdb.token)

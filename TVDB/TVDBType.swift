@@ -16,29 +16,13 @@ public extension TVDBType {
 }
 
 func stubbedResponse(_ filename: String) -> Data {
-  let resourcesPath = Bundle(for: TVDB.self).bundlePath
-  let bundle = findBundleUsing(resourcesPath: resourcesPath)
+  let bundle = Bundle.testing
 
-	let url = bundle.url(forResource: filename, withExtension: "json")
+  let url = bundle.url(forResource: filename, withExtension: "json")
 
   guard let fileURL = url, let data = try? Data(contentsOf: fileURL) else {
     return Data()
   }
 
   return data
-}
-
-private func findBundleUsing(resourcesPath: String) -> Bundle {
-	var path = "/../"
-
-	var bundle: Bundle? = nil
-	var attempt = 0
-
-	repeat {
-		bundle = Bundle(path: resourcesPath.appending("\(path)TVDBTestsResources.bundle"))
-		path.append("../")
-		attempt += 1
-	} while bundle == nil && attempt < 5
-
-	return bundle!
 }

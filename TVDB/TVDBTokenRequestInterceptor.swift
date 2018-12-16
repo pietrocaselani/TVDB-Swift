@@ -24,7 +24,6 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
 		if currentToken == nil {
 			doLogin(target, tvdb, request, endpoint, done)
 		} else {
-
 			if tvdb.hasValidToken {
 				done(.success(request))
 			} else {

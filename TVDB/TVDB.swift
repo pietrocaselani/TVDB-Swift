@@ -51,7 +51,9 @@ public class TVDB {
 
 		interceptors.append(TVDBTokenRequestInterceptor(tvdb: self))
 
-		plugins.append(AccessTokenPlugin(tokenClosure: self.token ?? ""))
+        plugins.append(AccessTokenPlugin { [weak self] () -> String in
+            self?.token ?? ""
+        })
 	}
 
 	func createProvider<T: TVDBType>(forTarget target: T.Type) -> MoyaProvider<T> {

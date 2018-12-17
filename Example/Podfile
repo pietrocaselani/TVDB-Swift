@@ -1,6 +1,18 @@
 use_frameworks!
+platform :osx, '10.11'
+
 target 'TVDB_Tests' do
-  platform :osx, '10.11'
   inherit! :search_paths
-  pod 'TVDB', :path => '../'
+
+  pod 'TVDB', path: '../'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    next unless target.name == 'Alamofire'
+
+    target.build_configurations.each do |config|
+      config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'Yes'
+    end
+  end
 end

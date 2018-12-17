@@ -1,8 +1,6 @@
 use_frameworks!
 platform :osx, '10.11'
 
-require 'pry'
-
 target 'TVDB_Tests' do
   inherit! :search_paths
 

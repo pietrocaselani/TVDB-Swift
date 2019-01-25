@@ -73,7 +73,7 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
 			//Then
 			resultExpectation.fulfill()
 			XCTAssertNotNil(self.tvdb.token)
-			XCTAssertEqual(self.tvdb.token, "cool_new_token!")
+			XCTAssertEqual(self.tvdb.token, "cooltoken!")
 		}
 
 		wait(for: [resultExpectation], timeout: 1)
@@ -86,11 +86,15 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
 		let builder = TVDBBuilder {
 			$0.apiKey = "my_apikey"
 			$0.userDefaults = userDefaultsMock
-			$0.dateProvider = TestableDateProvider(now: beginOfTime.addingTimeInterval(60 * 60 * 24))
+			$0.dateProvider = TestableDateProvider(now: beginOfTime.addingTimeInterval(60 * 60 * 22))
 		}
 
+    let tokenData = NSKeyedArchiver.archivedData(withRootObject: "my_token")
+    userDefaultsMock.set(tokenData, forKey: TVDB.accessTokenKey)
+
+    userDefaultsMock.set(beginOfTime.addingTimeInterval(60 * 60 * 20), forKey: TVDB.accessTokenDateKey)
+
 		self.tvdb = TVDBTestable(builder: builder)
-		tvdb.token = "my_token"
 
 		self.interceptor = TVDBTokenRequestInterceptor(tvdb: tvdb)
 

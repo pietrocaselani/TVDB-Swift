@@ -27,17 +27,9 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
 			if tvdb.hasValidToken {
 				done(.success(request))
 			} else {
-				refreshToken(target, tvdb, request, endpoint, done)
+				doLogin(target, tvdb, request, endpoint, done)
 			}
 		}
-	}
-
-	private func refreshToken<T: TVDBType>(_ target: T.Type,
-										   _ tvdb: TVDB,
-	                                       _ request: URLRequest,
-	                                       _ endpoint: Endpoint,
-	                                       _ done: @escaping MoyaProvider<T>.RequestResultClosure) {
-		requestToken(tvdb, Authentication.refreshToken, request, target, done)
 	}
 
 	private func doLogin<T: TVDBType>(_ target: T.Type,

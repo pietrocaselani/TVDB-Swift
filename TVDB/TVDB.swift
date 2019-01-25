@@ -38,11 +38,9 @@ public class TVDB {
 	public var hasValidToken: Bool {
     guard let tokenDate = lastTokenDate else { return false }
 
-    let now = dateProvider.now.timeIntervalSince1970
-    let lastTokenTimeInterval = tokenDate.timeIntervalSince1970
-    let diff = now - lastTokenTimeInterval
+    let diff = dateProvider.now.timeIntervalSince1970 - tokenDate.timeIntervalSince1970
 
-    return diff < 86400
+    return diff < 82800
 	}
 
 	public lazy var authentication: MoyaProvider<Authentication> = createProvider(forTarget: Authentication.self)

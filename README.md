@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/TVDB.svg?style=flat)](http://cocoapods.org/pods/TVDB)
 [![Platform](https://img.shields.io/cocoapods/p/TVDB.svg?style=flat)](http://cocoapods.org/pods/TVDB)
 
+**This project was moved to the [CouchTracker repo](https://github.com/pietrocaselani/CouchTracker)**
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
